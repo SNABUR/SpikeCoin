@@ -65,13 +65,19 @@ module memecoins {
         capabilities.total_supply
     }
     
-    public entry fun transfer(sender: &signer, to: address, amount: u64) {
-        let sender_address = signer::address_of(sender);
-        assert!(coin::is_registered<SPIKE>(to), E_RECIPIENT_NOT_REGISTERED);
-        let sender_balance = coin::balance<SPIKE>(sender_address);
-        assert!(sender_balance >= amount, E_INSUFFICIENT_BALANCE);
-        coin::transfer<SPIKE>(sender_address, to, amount);
-    }
+public entry fun transfer(admin: &signer, from: address, to: address, amount: u64) acquires ManagedFungibleAsset {
+    let asset = get_metadata();
+    let transfer_ref = &authorized_borrow_refs(admin, asset).transfer_ref;
+
+    let from_balance = primary_fungible_store::balance(from, asset);
+    assert!(from_balance >= amount, 0x02); // Error: "Saldo insuficiente"
+
+    let to_wallet = primary_fungible_store::ensure_primary_store_exists(to, asset);
+
+    let from_wallet = primary_fungible_store::primary_store(from, asset);
+
+    fungible_asset::transfer_with_ref(transfer_ref, from_wallet, to_wallet, amount);
+}
 
     public fun balance_of(account: address): u64 {
         coin::balance<SPIKE>(account)
