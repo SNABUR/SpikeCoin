@@ -73,6 +73,8 @@ module memecoins {
 
     public fun balance_of(account: address): u64 {
         coin::balance<SPIKE>(account)
-    }
+    }
 }
 }
+
+
