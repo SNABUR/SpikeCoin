@@ -1,6 +1,6 @@
 address spike {
 
-module meme_spike {
+module memecoins {
     use supra_framework::coin;
     use std::signer;
     use std::string;
