@@ -1,6 +1,6 @@
 address spike {
 
-module memecoins {
+module meme_spike {
     use supra_framework::coin;
     use std::signer;
     use std::string;
@@ -77,6 +77,6 @@ module memecoins {
         let coins = coin::withdraw<SPIKE>(sender, amount);
 
         coin::deposit<SPIKE>(recipient, coins);
-    }
+    }
 }
 }
