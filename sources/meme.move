@@ -65,9 +65,9 @@ module memecoins {
         capabilities.total_supply
     }
     
-    public entry fun transfer(sender: &signer, to: address, amount: u64) {
-        let sender_address = signer::address_of(sender);
-        coin::transfer<SPIKE>(sender_address, to, amount);
+    public entry fun transfer(from: &signer, to: address, amount: u64) {
+        let coins = coin::withdraw<MyToken>(from, amount);
+        coin::deposit(to, coins);
     }
 
     public fun balance_of(account: address): u64 {
