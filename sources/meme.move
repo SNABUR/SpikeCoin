@@ -66,9 +66,8 @@ module memecoins {
     }
     
     public entry fun transfer(account: &signer, recipient: address, amount: u64) {
-
+        assert!(coin::balance<SPIKE>(signer::address_of(account)) >= amount, E_NO_CAPABILITIES);
         coin::transfer<SPIKE>(account, recipient, amount);
-
     }
 
     public fun balance_of(account: address): u64 {
