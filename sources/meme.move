@@ -67,8 +67,6 @@ module memecoins {
     
     public entry fun transfer(sender: &signer, to: address, amount: u64) {
         let sender_address = signer::address_of(sender);
-    
-        // Realizar la transferencia utilizando la lógica de coin
         coin::transfer<SPIKE>(sender_address, to, amount);
     }
 
