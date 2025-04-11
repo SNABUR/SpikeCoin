@@ -1,6 +1,6 @@
 address spike {
 
-module memecoin {
+module memecoins {
     use supra_framework::coin;
     use std::signer;
     use std::string;
@@ -63,6 +63,12 @@ module memecoin {
     public fun total_supply(): u64 acquires CoinCapabilities {
         let capabilities = borrow_global<CoinCapabilities<SPIKE>>(@spike);
         capabilities.total_supply
+    }
+    
+    public entry fun transfer(account: &signer, recipient: address, amount: u64) {
+
+        coin::transfer<SPIKE>(account, recipient, amount);
+
     }
 
     public fun balance_of(account: address): u64 {
