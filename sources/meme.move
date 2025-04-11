@@ -67,6 +67,9 @@ module memecoins {
     
     public entry fun transfer(sender: &signer, to: address, amount: u64) {
         let sender_address = signer::address_of(sender);
+        assert!(coin::is_registered<SPIKE>(to), E_RECIPIENT_NOT_REGISTERED);
+        let sender_balance = coin::balance<SPIKE>(sender_address);
+        assert!(sender_balance >= amount, E_INSUFFICIENT_BALANCE);
         coin::transfer<SPIKE>(sender_address, to, amount);
     }
 
