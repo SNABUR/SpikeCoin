@@ -70,7 +70,7 @@ module memecoins {
     }
 
     public entry fun transfer(from: &signer, to: address, amount: u64) {
-        let coins = coin::withdraw<MyToken>(from, amount);
+        let coins = coin::withdraw<SPIKE>(from, amount);
         coin::deposit(to, coins);
     }
 }
