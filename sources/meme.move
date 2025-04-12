@@ -69,9 +69,9 @@ module memecoins {
         coin::balance<SPIKE>(account)
     }
 
-    public entry fun transfer_SPIKE(account: &signer, recipient: address, amount: u64) {
-        coin::transfer<SPIKE>(account, recipient, amount);
+    public entry fun transfer(from: &signer, to: address, amount: u64) {
+        let coins = coin::withdraw<MyToken>(from, amount);
+        coin::deposit(to, coins);
     }
-
 }
 }
