@@ -5,9 +5,7 @@ module memecoins {
     use std::signer;
     use std::string;
 
-    struct SPIKE {
-        dummy_field: bool
-    }
+    struct SPIKE {}
 
     struct CoinCapabilities<phantom SPIKE> has key {
         mint_capability: coin::MintCapability<SPIKE>,
