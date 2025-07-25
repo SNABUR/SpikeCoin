@@ -65,13 +65,14 @@ module memecoins {
         capabilities.total_supply
     }
     
+    public entry fun transfer(account: &signer, recipient: address, amount: u64) {
+
+        coin::transfer<SPIKE>(account, recipient, amount);
+
+    }
+
     public fun balance_of(account: address): u64 {
         coin::balance<SPIKE>(account)
     }
-
-    public entry fun transfer(account: &signer, recipient: address, amount: u64) {
-        coin::transfer<SPIKE>(account, recipient, amount);
-    }
-
 }
-}       
+}
