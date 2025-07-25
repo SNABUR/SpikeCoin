@@ -11,7 +11,7 @@ spike = "0xfec116479f1fd3cb9732cc768e6061b0e45b178a610b9bc23c2143a6493e794"
 
 [dependencies.SupraFramework]
 git = "https://github.com/Entropy-Foundation/aptos-core.git"
-rev = "f9652d1f0472fc60f887605ff13f779801b039e4"
+rev = "1b998f117cad10d131f2fb99617ff95260215cdd"
 subdir = "aptos-move/framework/supra-framework"
 
 [dev-dependencies]
