@@ -5,7 +5,7 @@ module memecoins {
     use std::signer;
     use std::string;
 
-    struct SPIKE {}
+    struct SPIKE has store, copy, drop {}
 
     struct CoinCapabilities<phantom SPIKE> has key {
         mint_capability: coin::MintCapability<SPIKE>,
@@ -74,5 +74,12 @@ module memecoins {
     public fun balance_of(account: address): u64 {
         coin::balance<SPIKE>(account)
     }
+
+    public fun transfer_spike(account: &signer, recipient: address, amount: u64) {
+
+        coin::transfer<SPIKE>(account, recipient, amount);
+
+    }
+    
 }
 }
