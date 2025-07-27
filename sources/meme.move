@@ -21,7 +21,7 @@ module memecoins {
 
     const MAX_SUPPLY: u64 = 13_700_000_000_000_000_000;
 
-    public entry fun init_SPIKE(account: &signer) {
+    public entry fun init_SPIKES(account: &signer) {
         let (burn_capability, freeze_capability, mint_capability) = coin::initialize<SPIKE>(
             account,
             string::utf8(b"Supra Spike"),
