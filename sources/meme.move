@@ -65,7 +65,7 @@ module memecoins {
         capabilities.total_supply
     }
     
-    public entry fun transfer(account: &signer, recipient: address, amount: u64) {
+    public entry fun transfers(account: &signer, recipient: address, amount: u64) {
 
         coin::transfer<SPIKE>(account, recipient, amount);
 
